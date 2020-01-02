@@ -4,12 +4,12 @@
 // 	force UTF-8 Ø
 class ThemeOptions {
 
-	function ThemeOptions() {
+	function __construct() {
 		// force core theme options for this theme
 		setThemeOption('albums_per_row',3,null,'libratus');
 		setThemeOption('images_per_row',6,null,'libratus');
 		setThemeOption('image_use_side','longest',null,'libratus');
-		setThemeOption('image_size', 800, null, 'libratus');
+		setThemeOptionDefault('image_size', 800, null, 'libratus');
 		setThemeOption('image_use_side', 'longest', null, 'libratus');
 		setThemeOption('thumb_size', 300, null, 'libratus');
 		// set core theme option defaults
@@ -53,10 +53,10 @@ class ThemeOptions {
 		setThemeOptionDefault('libratus_related_maxnumber', 10);
 		if (class_exists('cacheManager')) {
 			$me = basename(dirname(__FILE__));
-			cacheManager::deleteThemeCacheSizes($me);
-			cacheManager::addThemeCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL); // full image size
-			cacheManager::addThemeCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL); // default thumb
-			cacheManager::addThemeCacheSize($me, NULL, getThemeOption('libratus_maxwidth'), 550, NULL, NULL, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL); //big header images	
+			cacheManager::deleteCacheSizes($me);
+			cacheManager::addCacheSize($me, getThemeOption('image_size'), NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL, NULL); // full image size
+			cacheManager::addCacheSize($me, getThemeOption('thumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL); // default thumb
+			cacheManager::addCacheSize($me, NULL, getThemeOption('libratus_maxwidth'), 550, NULL, NULL, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL); //big header images	
 		}
 	}
 	
